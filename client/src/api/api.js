@@ -70,7 +70,7 @@ export const getWinningCandidates = async () => {
         const response = await axios.get('http://localhost:8080/winning-candidates');
         const candidates = await response;
 
-        return candidates.data[0].candidates
+        return candidates.data
     } catch (err) {
         return err.message
     }

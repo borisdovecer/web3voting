@@ -47,7 +47,7 @@ const Vote = () => {
 
     useEffect(() => {
         setAllCandidates();
-        // setLeadingCandidates();
+        setLeadingCandidates();
     }, [])
 
     return (
@@ -125,7 +125,7 @@ const Vote = () => {
                                     <th>Cult</th>
                                     <th>Votes</th>
                                 </tr>
-                                {leads.slice(0, 3).map(lead =>
+                                {leads.map(lead =>
                                     <tr className="border-[1px] border-[#3d4f7c]">
                                         <td>{leads.indexOf(lead)}</td>
                                         <td>{lead[0]}</td>
