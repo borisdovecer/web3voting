@@ -4,9 +4,9 @@
 
 Voting system on blockchain using ERC20 tokens to vote. Contract and Token are deployed on Rinkeby testnet
 
-Contract address: 0x1B4960fCA6aB225E9E69EEC3eC269ACaf5B8b036
+Contract address: 0xC937492d080500ED48af27Bc16012178EfA6DE0c
 
-WKND token address: 0xFd05FA76be6B08D189579A509431e159D6Ccdf36
+WKND token address: 0x9028137885962fc4CeCc744c6Db19DE0D4211F03
 
 To successfully install every part of the project you will need the following:
 
@@ -32,7 +32,7 @@ To run the backend of the application, follow the instructions:
 
 # Smart Contract
 
-To deploy your versions of the contracts, follow the instructions:
+To install smart contracts, follow the instructions:
 
 - Navigate to the smart_contract folder
 - Run npm install from the terminal
