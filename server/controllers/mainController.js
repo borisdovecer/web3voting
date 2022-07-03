@@ -74,18 +74,11 @@ const vote = async (req, res) => {
 
     try {
         const hasVoted = await votingContract.hasVoted(walletAddress);
-        const checkBalance = await votingContract.checkBalance(walletAddress, amount);
-        // const nonce = await votingContract.getNonce(walletAddress);
-
         if(hasVoted){
             res.json({message: "You have already voted"});
             return;
         }
-
-        if(!checkBalance){
-            res.json({message: "Nema glasanja bez tokena!"});
-            return;
-        }
+      
         votingContract.vote(candidateId, amount, walletAddress, {gasLimit: '0x17e04'}).then(() => {
             res.json({message: "You have successfully voted"});
             return;

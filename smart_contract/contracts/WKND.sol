@@ -1,12 +1,13 @@
-//SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract WKND is ERC20 {
+
     address public owner;
 
-    constructor() public ERC20("Wakanda Voting Token", "WKND"){
+    constructor() ERC20("WakandaToken", "WKND") {
         owner = msg.sender;
     }
 
@@ -14,11 +15,15 @@ contract WKND is ERC20 {
         return 0;
     }
 
-    function mint(address to) external{
-        _mint(to, 1);
+    function mint(address _address) public {
+        _mint(_address, 1);
     }
 
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);
+    }
+
+    function burnFrom(address _address, uint256 amount) public {
+        _burn(_address, amount);
     }
 }

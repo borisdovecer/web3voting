@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Loader } from ".";
-import { getAllCandidates, voteApi } from "../api/api";
+import { getAllCandidates, getWinningCandidates, voteApi } from "../api/api";
 
 const Vote = () => {
     const [candidates, setCandidates] = useState([]);
+    const [leads, setLeads] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showLeads, setShowLeads] = useState(false);
     const [candidateId, setCandidateId] = useState();
@@ -26,7 +27,7 @@ const Vote = () => {
         }
     };
 
-    const leads = () => {
+    const handleLeads = () => {
         setShowLeads(prevState => !prevState.valueOf())
     }
 
@@ -37,8 +38,16 @@ const Vote = () => {
         }, 0);
     }
 
+    const setLeadingCandidates = () => {
+        setTimeout(async () => {
+            const leads = await getWinningCandidates();
+            setLeads(leads.data);
+        }, 0);
+    }
+
     useEffect(() => {
         setAllCandidates();
+        setLeadingCandidates();
     }, [])
 
     return (
@@ -104,7 +113,7 @@ const Vote = () => {
                             )}
                     </div>
                     <div className="p-3 flex justify-center items-start flex-col w-9/12 my-5 text-white">
-                        <h1 onClick={leads} className="text-3xl sm:text-5xl text-white py-1 cursor-pointer hover:text-[#3d4f7c]">
+                        <h1 onClick={handleLeads} className="text-3xl sm:text-5xl text-white py-1 cursor-pointer hover:text-[#3d4f7c]">
                             Show Leads
                         </h1>
                         {showLeads ?
@@ -116,13 +125,13 @@ const Vote = () => {
                                     <th>Cult</th>
                                     <th>Votes</th>
                                 </tr>
-                                {candidates.slice(0, 3).map(candidate =>
+                                {leads.slice(0, 3).map(lead =>
                                     <tr className="border-[1px] border-[#3d4f7c]">
-                                        <td>{candidates.indexOf(candidate)}</td>
-                                        <td>{candidate[0]}</td>
-                                        <td>{candidate[1]}</td>
-                                        <td>{candidate[2]}</td>
-                                        <td>{candidate[3]}</td>
+                                        <td>{leads.indexOf(lead)}</td>
+                                        <td>{lead[0]}</td>
+                                        <td>{lead[1]}</td>
+                                        <td>{lead[2]}</td>
+                                        <td>{lead[3]}</td>
                                     </tr>
                                 )}
                             </table>
