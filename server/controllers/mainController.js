@@ -78,8 +78,8 @@ const vote = async (req, res) => {
             res.json({message: "You have already voted"});
             return;
         }
-      
-        votingContract.vote(candidateId, amount, walletAddress, {gasLimit: '0x17e04'}).then(() => {
+
+        votingContract.vote(candidateId, amount, walletAddress).then(() => {
             res.json({message: "You have successfully voted"});
             return;
         });

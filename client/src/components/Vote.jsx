@@ -47,7 +47,7 @@ const Vote = () => {
 
     useEffect(() => {
         setAllCandidates();
-        setLeadingCandidates();
+        // setLeadingCandidates();
     }, [])
 
     return (
